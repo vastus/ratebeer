@@ -1,0 +1,14 @@
+#notice
+  = notice
+
+p
+  strong Name
+  = @brewery.name
+
+p
+  strong Year
+  = @brewery.year
+
+= link_to('Edit', edit_brewery_path(@brewery))
+|
+= link_to('Back', breweries_path)
