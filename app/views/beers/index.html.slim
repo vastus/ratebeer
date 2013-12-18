@@ -1,31 +1,25 @@
-<h1>Listing beers</h1>
+h1 Beers
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Style</th>
-      <th>Brewery</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+p = "Number of breweries: #{@beers.count}"
 
-  <tbody>
-    <% @beers.each do |beer| %>
-      <tr>
-        <td><%= beer.name %></td>
-        <td><%= beer.style %></td>
-        <td><%= beer.brewery_id %></td>
-        <td><%= link_to 'Show', beer %></td>
-        <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+table
+  thead
+    tr
+      th Name
+      th Style
+      th Brewery
+      th &nbsp;
+      th &nbsp;
+      th &nbsp;
+  tbody
+    - @beers.each do |beer|
+       tr
+        td = beer.name
+        td = beer.style
+        td = beer.brewery_id
+        td = link_to('Show', beer)
+        td = link_to('Edit', edit_beer_path(beer))
+        td = link_to('Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' })
 
-<br>
+p = link_to('New Beer', new_beer_path)
 
-<%= link_to 'New Beer', new_beer_path %>
