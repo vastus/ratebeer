@@ -1,0 +1,22 @@
+h1 Breweries
+
+p = "Number of breweries: #{@breweries.count}"
+
+table
+  thead
+    tr
+      th Name
+      th Year
+      th &nbsp;
+      th &nbsp;
+      th &nbsp;
+  tbody
+    - @breweries.each do |brewery|
+       tr
+        td = link_to(brewery.name, brewery)
+        td = brewery.year
+        td = link_to('Edit', edit_brewery_path(brewery))
+        td = link_to('Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' })
+
+p = link_to('New Brewery', new_beer_path)
+
