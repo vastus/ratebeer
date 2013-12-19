@@ -18,5 +18,8 @@ table
         td = link_to('Edit', edit_brewery_path(brewery))
         td = link_to('Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' })
 
-p = link_to('New Brewery', new_beer_path)
+p 
+  = link_to('New Brewery', new_beer_path)
+  br
+  = link_to("List of beers", beers_path)
 

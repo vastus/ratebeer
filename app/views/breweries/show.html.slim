@@ -1,14 +1,18 @@
 #notice
   = notice
 
-p
-  strong Name
-  = @brewery.name
+h2 = @brewery.name
 
 p
-  strong Year
-  = @brewery.year
+  i
+    | Established at 
+    = @brewery.year
 
-= link_to('Edit', edit_brewery_path(@brewery))
-|
-= link_to('Back', breweries_path)
+p
+  - @brewery.beers.each do |beer|
+    = link_to(beer.name, beer) + " "
+
+p
+  = link_to('Edit', edit_brewery_path(@brewery))
+  |  | 
+  = link_to('Back', breweries_path)

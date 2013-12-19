@@ -14,12 +14,15 @@ table
   tbody
     - @beers.each do |beer|
        tr
-        td = beer.name
+        td = link_to(beer.name, beer)
         td = beer.style
-        td = beer.brewery_id
+        td = link_to(beer.brewery.name, beer.brewery)
         td = link_to('Show', beer)
         td = link_to('Edit', edit_beer_path(beer))
         td = link_to('Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' })
 
-p = link_to('New Beer', new_beer_path)
+p 
+  = link_to('New Beer', new_beer_path)
+  br
+  = link_to("List of breweries", breweries_path)
 

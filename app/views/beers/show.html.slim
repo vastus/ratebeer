@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
+#notice
+  = notice
 
-<p>
-  <strong>Name:</strong>
-  <%= @beer.name %>
-</p>
+h2 = @beer.name
 
-<p>
-  <strong>Style:</strong>
-  <%= @beer.style %>
-</p>
+p
+  i = @beer.style
 
-<p>
-  <strong>Brewery:</strong>
-  <%= @beer.brewery_id %>
-</p>
+p
+  == "Made by #{link_to(@beer.brewery.name, @beer.brewery)}"
 
-<%= link_to 'Edit', edit_beer_path(@beer) %> |
-<%= link_to 'Back', beers_path %>
+= link_to('Edit', edit_beer_path(@beer))
+|  | 
+= link_to('Back', beers_path)
