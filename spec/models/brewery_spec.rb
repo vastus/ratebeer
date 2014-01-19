@@ -27,9 +27,8 @@ describe Brewery do
         hartwall.beers.create!(name: beer.name, style: beer.style)
       end
 
-      it "shovels beers" do
+      it "by shovel operator" do
         hartwall.beers << beer
-        hartwall.save!
       end
 
       # Tuhoaminen
