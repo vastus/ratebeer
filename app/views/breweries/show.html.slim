@@ -5,8 +5,11 @@ h2 = @brewery.name
 
 p
   i
-    | Established at 
+    | Established in
     = @brewery.year
+
+p
+  = "Number of beers #{@brewery.beers.count}"
 
 p
   - @brewery.beers.each do |beer|
