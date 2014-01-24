@@ -10,7 +10,10 @@ p
   == "Made by #{link_to(@beer.brewery.name, @beer.brewery)}"
 
 p
-  = "Has #{@beer.ratings.count} ratings, average #{@beer.average_rating}"
+  - if 0 < @beer.ratings.count
+    = "Has #{@beer.ratings.count} ratings, average #{@beer.average_rating}"
+  - else
+    = "No ratings for this beer yet."
 
 = link_to('Edit', edit_beer_path(@beer))
 |  | 
