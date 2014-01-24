@@ -7,5 +7,11 @@ html
     = javascript_include_tag("application", "data-turbolinks-track" => true)
     = csrf_meta_tags
   body
-    == yield
+    nav.navibar
+      = link_to('breweries', breweries_path)
+      |  | 
+      = link_to('beers', beers_path)
+      
+    #torso
+      == yield
 
