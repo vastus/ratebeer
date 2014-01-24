@@ -11,7 +11,7 @@ p
 
 p
   - if 0 < @beer.ratings.count
-    = "Has #{@beer.ratings.count} ratings, average #{@beer.average_rating}"
+    = "Has #{pluralize(@beer.ratings.count, 'rating')}, average #{@beer.average_rating}"
   - else
     = "No ratings for this beer yet."
 
