@@ -5,7 +5,7 @@ h1 Create a Rating
     .field
       = f.label(:beer_id, 'Beer ID')
       br
-      = f.number_field(:beer_id)
+      = f.select(:beer_id, options_from_collection_for_select(@beers, :id, :name))
     .field
       = f.label(:score)
       br
