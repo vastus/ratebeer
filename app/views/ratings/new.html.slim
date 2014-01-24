@@ -1,0 +1,16 @@
+h1 Create a Rating
+
+#rating.new
+  = form_for(@rating) do |f|
+    .field
+      = f.label(:beer_id, 'Beer ID')
+      br
+      = f.number_field(:beer_id)
+    .field
+      = f.label(:score)
+      br
+      = f.number_field(:score)
+    .button
+      = f.submit
+
+
