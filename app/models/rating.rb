@@ -1,3 +1,5 @@
 class Rating < ActiveRecord::Base
-  belongs_to :beer
+  # associations
+  belongs_to(:beer)
 end
+
