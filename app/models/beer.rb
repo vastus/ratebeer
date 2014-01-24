@@ -1,3 +1,7 @@
 class Beer < ActiveRecord::Base
-  belongs_to :brewery
+  # associations
+  belongs_to(:brewery)
+
+  has_many(:ratings)
 end
+
