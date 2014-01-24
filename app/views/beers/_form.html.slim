@@ -14,7 +14,7 @@
     .field
       = f.label(:style)
       br
-      = f.text_field(:style)
+      = f.select(:style, options_for_select(@styles))
     .field
       = f.label(:brewery_id)
       br
