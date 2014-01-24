@@ -9,6 +9,9 @@ p
 p
   == "Made by #{link_to(@beer.brewery.name, @beer.brewery)}"
 
+p
+  = "Has #{@beer.ratings.count} ratings, average #{@beer.average_rating}"
+
 = link_to('Edit', edit_beer_path(@beer))
 |  | 
 = link_to('Back', beers_path)
