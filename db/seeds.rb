@@ -24,4 +24,5 @@ punk.ratings.create!(score: 25)
 punk.ratings.create!(score: 45)
 nanny.ratings.create!(score: 14)
 nanny.ratings.create!(score: 21)
+xporter.ratings.create!(score: 41)
 
