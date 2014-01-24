@@ -1,6 +1,8 @@
 h1 Ratings
 
-= "Number of ratings #{@ratings.size}"
+p = "Number of ratings #{@ratings.size}"
+
+p = link_to('New rating', ratings_new_path)
 
 ul
   - for rating in @ratings
