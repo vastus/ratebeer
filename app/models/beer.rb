@@ -7,5 +7,9 @@ class Beer < ActiveRecord::Base
   def average_rating
     ratings.average(:score).to_f.round(2)
   end
+
+  def to_s
+    "#{brewery.name}'s #{name}"
+  end
 end
 
