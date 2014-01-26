@@ -16,7 +16,10 @@ p
     = link_to(beer.name, beer) + " "
 
 p
-  = "Has #{pluralize(@brewery.ratings.count, 'rating')}, average #{@brewery.average_rating}"
+  - if @brewery.ratings.empty?
+    = "Has no ratings"
+  - else
+    = "Has #{pluralize(@brewery.ratings.count, 'rating')}, average #{@brewery.average_rating}"
 
 p
   = link_to('Edit', edit_brewery_path(@brewery))
