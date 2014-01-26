@@ -6,4 +6,8 @@ p = link_to('New rating', new_rating_path)
 
 ul
   - for rating in @ratings
-    li = rating
+    li
+      = rating
+      |  |
+      = link_to('delete', rating, method: :delete, confirm: 'Are you sure?')
+
