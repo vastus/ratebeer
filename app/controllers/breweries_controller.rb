@@ -74,8 +74,11 @@ class BreweriesController < ApplicationController
   end
 
   def authenticate
+    admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
     authenticate_or_request_with_http_basic do |user, pass|
-      user == 'admin' && pass == 'secret'
+      admin_accounts.each do |u, p|
+        return true if u == user && p == pass
+      end
     end
   end
 end
