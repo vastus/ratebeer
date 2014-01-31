@@ -29,3 +29,6 @@ nanny.ratings.create!(score: 21)
 xporter.ratings.create!(score: 41)
 flek13.ratings.create!(score: 9001)
 
+User.destroy_all
+juhoh = User.create!(username: "juhoh")
+
