@@ -17,6 +17,9 @@ punk = brewdog.beers.create!(name: "Punk IPA", style: "IPA")
 nanny = brewdog.beers.create!(name: "Nanny State", style: "lowalcohol")
 flek13 = ufleku.beers.create!(name: "The Flek Thirteen", style: "Lager")
 
+User.destroy_all
+juhoh = User.create!(username: "juhoh")
+
 Rating.destroy_all
 iso3.ratings.create!(score: 10)
 iso3.ratings.create!(score: 21)
@@ -29,6 +32,5 @@ nanny.ratings.create!(score: 21)
 xporter.ratings.create!(score: 41)
 flek13.ratings.create!(score: 9001)
 
-User.destroy_all
-juhoh = User.create!(username: "juhoh")
+Rating.all.each { |r| juhoh.ratings << r }
 
