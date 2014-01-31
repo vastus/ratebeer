@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   # validations
   validates(:username,
     uniqueness: true,
-    length: { minimum: 3})
+    length: {minimum: 3, maximum: 15})
 end
 
