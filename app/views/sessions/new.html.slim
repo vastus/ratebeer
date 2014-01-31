@@ -1,0 +1,11 @@
+h1 Sign in
+
+#session.new
+  = form_tag(sessions_path) do
+    .field
+      = text_field_tag(:username, params[:username], placeholder: "Username")
+    .button
+      = submit_tag("Sign in")
+
+
+
