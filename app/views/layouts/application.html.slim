@@ -13,9 +13,9 @@ html
       = link_to('beers', beers_path)
       |  | 
       = link_to('ratings', ratings_path)
-      - unless session[:user_id].nil?
+      - if current_user
         |  |
-        = "#{User.find(session[:user_id]).username} signed in"
+        = "#{current_user.username} signed in"
       
     #torso
       == yield
