@@ -1,7 +1,22 @@
 p#notice = notice
 
+h2 = @user.username
+
 p
-  strong = @user.username
+  - if @user.ratings.any?
+    = "Has #{pluralize(@user.ratings.count, 'rating')}, average #{@user.average_rating}"
+  - else
+    = "Has no ratings."
+
+h3 ratings
+
+ul
+  - for rating in @user.ratings
+    li
+      = "#{rating}"
+      |  | 
+      = link_to('delete', rating, method: :delete)
+
 
 = link_to 'Edit', edit_user_path(@user)
 '|
