@@ -2,6 +2,12 @@ h1 Create a Rating
 
 #rating.new
   = form_for(@rating) do |f|
+    - if @rating.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@rating.errors.count, 'error')} prohibited rating from being saved:"
+        ul
+          - for msg in @rating.errors.full_messages
+            li = msg
     .field
       = f.label(:beer_id, 'Beer ID')
       br
@@ -12,5 +18,4 @@ h1 Create a Rating
       = f.number_field(:score)
     .button
       = f.submit
-
 
