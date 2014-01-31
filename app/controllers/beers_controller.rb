@@ -35,7 +35,11 @@ class BeersController < ApplicationController
         format.html { redirect_to(beers_path, notice: 'Beer was successfully created.') }
         format.json { render action: 'show', status: :created, location: @beer }
       else
-        format.html { render action: 'new' }
+        format.html {
+          @breweries = Brewery.all
+          @styles = ["Weizen", "Lager", "Pale Ale", "IPA", "Porter"]
+          render(:new)
+        }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
     end
