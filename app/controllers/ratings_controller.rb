@@ -9,8 +9,14 @@ class RatingsController < ApplicationController
   end
 
   def create
-    Rating.create!(params.require(:rating).permit(:beer_id, :score))
-    redirect_to(ratings_path)
+    @rating = Rating.new(params.require(:rating).permit(:beer_id, :score))
+    if @rating.save
+      current_user.ratings << @rating
+      redirect_to(user_url(current_user))
+    else
+      @beers = Beer.all
+      render(:new)
+    end
   end
 
   def destroy
