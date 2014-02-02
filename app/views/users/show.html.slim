@@ -6,6 +6,16 @@ p
   - else
     = "Has no ratings."
 
+h3 clubs
+
+- if @user.beer_clubs.any?
+  ul
+    - for club in @user.beer_clubs
+      li = link_to(club.name, club)
+- else
+  p doesn't belong to any clubs yet
+
+
 h3 ratings
 
 ul
