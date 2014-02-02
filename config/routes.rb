@@ -1,20 +1,17 @@
 Ratebeer::Application.routes.draw do
-  resources :users
-
+  # root route
   root('breweries#index')
 
-  resources :beers
-
-  resources :breweries
-
+  # resources
+  resources(:beers)
+  resources(:breweries)
+  resources(:users)
   resources(:ratings, only: [:index, :new, :create, :destroy])
-
   resources(:sessions, only: [:new, :create])
-
   resources(:beer_clubs, only: [:index, :show])
-
   resources(:memberships, only: [:new, :create])
 
+  # custom routes
   get('signup', to: 'users#new')
   get('signin', to: 'sessions#new')
   delete('signout', to: 'sessions#destroy')
