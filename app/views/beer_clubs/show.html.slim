@@ -1,0 +1,21 @@
+#beer_club
+  h2 = @beer_club.name
+  
+  p
+    i = "founded in #{@beer_club.founded} from #{@beer_club.city}"
+  
+  - if @beer_club.users.include?(current_user)
+    p You are a member of this club
+  - else
+    = render('join')
+
+  p
+    - if @beer_club.users.any?
+      = "Has #{pluralize(@beer_club.users.count, 'member')}"
+      ul
+        - for user in @beer_club.users
+          li = link_to(user.username, user)
+    - else
+      = "Has no members yet."
+  
+  
