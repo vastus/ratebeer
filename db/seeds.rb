@@ -30,7 +30,7 @@ punk.ratings.create!(score: 45)
 nanny.ratings.create!(score: 14)
 nanny.ratings.create!(score: 21)
 xporter.ratings.create!(score: 41)
-flek13.ratings.create!(score: 9001)
+flek13.ratings.create!(score: 50)
 
 Rating.all.each { |r| testos.ratings << r }
 
