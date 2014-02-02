@@ -18,7 +18,7 @@ nanny = brewdog.beers.create!(name: "Nanny State", style: "lowalcohol")
 flek13 = ufleku.beers.create!(name: "The Flek Thirteen", style: "Lager")
 
 User.destroy_all
-testos = User.create!(username: "testos", password: "secretos", password_confirmation: "secretos")
+testos = User.create!(username: "testos", password: "Secret0s", password_confirmation: "Secret0s")
 
 Rating.destroy_all
 iso3.ratings.create!(score: 10)
@@ -33,4 +33,8 @@ xporter.ratings.create!(score: 41)
 flek13.ratings.create!(score: 50)
 
 Rating.all.each { |r| testos.ratings << r }
+
+BeerClub.destroy_all
+general = BeerClub.create!(name: "General", founded: 2011, city: "HKI")
+general.users << testos
 
