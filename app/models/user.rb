@@ -2,8 +2,12 @@ class User < ActiveRecord::Base
   # mixins
   include RatingAverage
 
+  # auth
+  has_secure_password
+
   # associations
   has_many(:ratings)
+  has_many(:beers, through: :ratings)
 
   # validations
   validates(:username,
