@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   # associations
   has_many(:ratings, dependent: :destroy)
   has_many(:beers, through: :ratings)
+  has_many(:memberships)
+  has_many(:beer_clubs, through: :memberships)
 
   # validations
   validates(:username,
