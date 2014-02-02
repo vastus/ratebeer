@@ -1,4 +1,6 @@
 class Membership < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :beerclub
+  # associations
+  belongs_to(:user)
+  belongs_to(:beerclub)
 end
+
