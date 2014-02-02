@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
 
   def create
     @membership = Membership.new(membership_params)
-    if @membership.save && @membership.user_id == params[:user_id]
+    if @membership.save && @membership.user_id != params[:user_id]
       redirect_to(beer_club_url(@membership.beer_club), notice: "Joined #{@membership.beer_club.name}")
     else
       redirect_to(:back, notice: "You are already a member of this club")
