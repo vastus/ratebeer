@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+  before_action(:authorize, except: [:index])
+
   def index
     @ratings = Rating.all
   end
@@ -23,6 +25,13 @@ class RatingsController < ApplicationController
     rating = Rating.find(params[:id])
     rating.delete if current_user == rating.user
     redirect_to(:back)
+  end
+
+  private
+  def authorize
+    unless current_user
+      redirect_to(signin_url, notice: 'You have to sign in to do that')
+    end
   end
 end
 
