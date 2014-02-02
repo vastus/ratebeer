@@ -11,6 +11,10 @@ Ratebeer::Application.routes.draw do
 
   resources(:sessions, only: [:new, :create])
 
+  resources(:beer_clubs, only: [:index, :show])
+
+  resources(:memberships, only: [:new, :create])
+
   get('signup', to: 'users#new')
   get('signin', to: 'sessions#new')
   delete('signout', to: 'sessions#destroy')
