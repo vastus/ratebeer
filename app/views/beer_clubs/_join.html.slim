@@ -1,0 +1,11 @@
+.join
+  h3 join this club
+
+  #membership.new
+    = form_for(@beer_club.memberships.build) do |f|
+      = f.hidden_field(:user_id, value: current_user.id)
+      = f.hidden_field(:beer_club_id, value: @beer_club.id)
+      .button
+        = f.submit("Join #{@beer_club.name}")
+  
+
