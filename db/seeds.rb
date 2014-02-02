@@ -38,3 +38,5 @@ BeerClub.destroy_all
 general = BeerClub.create!(name: "General", founded: 2011, city: "HKI")
 general.users << testos
 
+crisp = BeerClub.create!(name: "Crisp", founded: 2014, city: "HKI")
+
