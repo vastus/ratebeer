@@ -1,0 +1,11 @@
+h1 Join a Club
+
+#membership.new
+  = form_for(@membership) do |f|
+    = f.hidden_field(:user_id, value: current_user.id)
+    .field
+      = f.label(:beer_club)
+      = f.select(:beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name))
+    .button
+      = f.submit('Join')
+
