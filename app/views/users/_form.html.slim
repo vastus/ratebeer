@@ -5,12 +5,13 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
+  - if @user.new_record?
+    .field
+      = f.label(:username)
+      br
+      = f.text_field(:username)
   .field
-    = f.label(:username)
-    br
-    = f.text_field(:username)
-  .field
-    = f.label(:password)
+    = @user.new_record? ? f.label(:password) : f.label(:password, 'New password')
     br
     = f.password_field(:password)
   .field
