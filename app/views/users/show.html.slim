@@ -17,8 +17,9 @@ ul
         = link_to('delete', rating, method: :delete, confirm: 'Are you sure?')
 
 
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to('remove account', @user, method: :delete, confirm: 'Are you sure?')
-'|
+- if @user == current_user
+  = link_to 'Edit', edit_user_path(@user)
+  |  | 
+  = link_to('remove account', @user, method: :delete, confirm: 'Are you sure?')
+  |  | 
 = link_to 'Back', users_path
