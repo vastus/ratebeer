@@ -1,0 +1,9 @@
+h1 Clubs
+
+ul
+  - for club in @beer_clubs
+    li
+      = link_to(club.name, club)
+      |  | 
+      = pluralize(club.users.count, 'member')
+
