@@ -31,3 +31,7 @@ group :development, :test do
     gem 'byebug'
 end
 
+group :test do
+  gem 'factory_girl_rails'
+end
+
