@@ -6,6 +6,8 @@ p
   - else
     = "Has no ratings."
 
+p = "Favorite style of beer: #{@user.favorite_style}"
+
 h3 clubs
 
 - if @user.beer_clubs.any?

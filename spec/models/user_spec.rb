@@ -48,7 +48,6 @@ describe User do
   end
 
   describe "favorite beer" do
-
     it "has a method for determining one" do
       user.should respond_to(:favorite_beer)
     end
@@ -67,6 +66,63 @@ describe User do
       create_beers_with_ratings(10, 20, 15, 7, 9, user)
       best = create_beer_with_rating(25, user)
       expect(user.favorite_beer).to eq(best)
+    end
+  end
+
+  describe "favorite style" do
+    it "has a method for it" do
+      user.should respond_to(:favorite_style)
+    end
+
+    it "does not have one w/o ratings" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the only style if only one rating" do
+      beer = FactoryGirl.create(:beer)
+      FactoryGirl.create(:rating, beer: beer, user: user)
+      expect(user.favorite_style).to eq("Lager")
+    end
+
+    it "calculates each styles points using #means_for_styles" do
+      lager = FactoryGirl.create(:beer, style: "Lager")
+      ale = FactoryGirl.create(:beer, style: "Ale")
+      wheat = FactoryGirl.create(:beer, style: "Wheat")
+
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 25, beer: lager, user: user)
+
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+
+      FactoryGirl.create(:rating, score: 15, beer: wheat, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: wheat, user: user)
+
+      stylespoints = { 'Lager' => 80/5.0, 'Ale' => 30/2.0, 'Wheat' => 35/2.0 }
+      expect(user.points_for_styles).to eq(stylespoints)
+    end
+
+    it "pics the style whose mean is the greatest" do
+      lager = FactoryGirl.create(:beer, style: "Lager")
+      ale = FactoryGirl.create(:beer, style: "Ale")
+      wheat = FactoryGirl.create(:beer, style: "Wheat")
+
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 25, beer: lager, user: user)
+
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+
+      FactoryGirl.create(:rating, score: 15, beer: wheat, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: wheat, user: user)
+
+      expect(user.favorite_style).to eq("Wheat")
     end
   end
 end
