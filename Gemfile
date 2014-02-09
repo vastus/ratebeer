@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'simplecov', require: false
 
 gem 'slim-rails'
 
