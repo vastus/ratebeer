@@ -39,8 +39,8 @@ describe User do
     end
 
     it "and with two ratings, has the correct average rating" do
-      user.ratings << FactoryGirl.create(:rating)
-      user.ratings << FactoryGirl.create(:another_rating)
+      user.ratings << Rating.new(score: 10)
+      user.ratings << Rating.new(score: 20)
 
       expect(user.ratings.count).to eq(2)
       expect(user.average_rating).to eq(15.0)
