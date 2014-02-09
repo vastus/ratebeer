@@ -35,6 +35,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def favorite_brewery
+    if ratings.any?
+      points_for_breweries.sort_by do |s, p|
+        p
+      end.last[0]
+    end
+  end
+
+  # TODO: refactor to one method
   def points_for_styles
     styles = {}
     counts = {}
@@ -48,14 +57,30 @@ class User < ActiveRecord::Base
         counts[style] += 1
       end
     end
-    return means_for_styles(styles, counts)
+    return calculate_means(styles, counts)
   end
 
-  def means_for_styles(styles, count)
-    styles.keys.each do |s|
-      styles[s] = styles[s] / count[s].to_f
+  def points_for_breweries
+    breweries = {}
+    counts = {}
+    ratings.each do |r|
+      brewery = r.beer.brewery.name
+      if breweries[brewery].nil?
+        breweries[brewery] = r.score
+        counts[brewery] = 1
+      else
+        breweries[brewery] += r.score
+        counts[brewery] += 1
+      end
     end
-    return styles
+    return calculate_means(breweries, counts)
+  end
+
+  def calculate_means(hash, count)
+    hash.keys.each do |s|
+      hash[s] = hash[s] / count[s].to_f
+    end
+    return hash
   end
 end
 

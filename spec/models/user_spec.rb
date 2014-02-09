@@ -84,7 +84,7 @@ describe User do
       expect(user.favorite_style).to eq("Lager")
     end
 
-    it "calculates each styles points using #means_for_styles" do
+    it "calculates each styles points using #points_for_styles" do
       lager = FactoryGirl.create(:beer, style: "Lager")
       ale = FactoryGirl.create(:beer, style: "Ale")
       wheat = FactoryGirl.create(:beer, style: "Wheat")
@@ -123,6 +123,45 @@ describe User do
       FactoryGirl.create(:rating, score: 20, beer: wheat, user: user)
 
       expect(user.favorite_style).to eq("Wheat")
+    end
+  end
+
+  describe "favorite brewery" do
+    it "has a method for it" do
+      user.should respond_to(:favorite_brewery)
+    end
+
+    it "does not have one w/o ratings" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the only brewery if only one rating" do
+      ufleku = FactoryGirl.create(:brewery, name: "U Fleku")
+      beer = FactoryGirl.create(:beer, brewery: ufleku)
+      FactoryGirl.create(:rating, beer: beer, user: user)
+      expect(user.favorite_brewery).to eq("U Fleku")
+    end
+
+    it "picks the brewery whose points average is the greatest" do
+      ufleku = FactoryGirl.create(:brewery, name: "U Fleku")
+      koff = FactoryGirl.create(:brewery, name: "Koff")
+      weihen = FactoryGirl.create(:brewery, name: "Weihenstephan")
+
+      lager = FactoryGirl.create(:beer, style: "Lager", brewery: ufleku)
+      ale = FactoryGirl.create(:beer, style: "Ale", brewery: koff)
+      wheat = FactoryGirl.create(:beer, style: "Wheat", brewery: weihen)
+
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 10, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 25, beer: lager, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: ale, user: user)
+      FactoryGirl.create(:rating, score: 15, beer: wheat, user: user)
+      FactoryGirl.create(:rating, score: 20, beer: wheat, user: user)
+
+      expect(user.favorite_brewery).to eq("Weihenstephan")
     end
   end
 end
