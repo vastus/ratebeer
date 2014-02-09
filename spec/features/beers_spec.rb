@@ -12,6 +12,7 @@ describe "Beers" do
     select('Weihen', from: 'Brewery')
     click_button('Create Beer')
     expect(Beer.count).to eq(1)
+    expect(page).to have_content('Bisse')
   end
 
   it "shows errors when no name given" do

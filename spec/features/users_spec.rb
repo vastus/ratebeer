@@ -29,5 +29,39 @@ describe "User" do
       end.to change{User.count}.by(1)
     end
   end
+
+  describe "show page" do
+    let(:beer) { FactoryGirl.create(:beer, name: "Wheat", style: "Wheat") }
+    before { sign_in(user) }
+
+    it "shows ratings done by user" do
+      FactoryGirl.create(:rating, score: 10, user: user, beer: beer)
+      FactoryGirl.create(:rating, score: 15, user: user, beer: beer)
+      FactoryGirl.create(:rating)
+      visit user_path(user.id)
+      expect(page).to have_content("Has 2 ratings")
+      expect(page).to have_content("Wheat 10")
+      expect(page).to have_content("Wheat 15")
+    end
+
+    it "can remove ratings" do
+      FactoryGirl.create(:rating, score: 10, user: user, beer: beer)
+      visit user_path(user.id)
+      click_link('delete')
+      expect(page).to have_content('Has no ratings')
+    end
+
+    it "shows favorite style of beer" do
+      FactoryGirl.create(:rating, score: 10, user: user, beer: beer)
+      visit user_path(user.id)
+      expect(page).to have_content("Favorite style of beer: Wheat")
+    end
+
+    it "shows favorite brewery" do
+      FactoryGirl.create(:rating, score: 10, user: user, beer: beer)
+      visit user_path(user.id)
+      expect(page).to have_content("Favorite brewery: anonymous")
+    end
+  end
 end
 
