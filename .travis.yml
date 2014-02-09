@@ -1,11 +1,18 @@
 language: ruby
 
 rvm:
- - 2.0.0
+  - 2.0.0
 
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+  - bundle exec rake db:migrate --trace
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec -fd spec/
 
+deploy:
+  provider: heroku
+  api_key:
+    secure: dD8rGlJTr8qvC/DgJbK8/C8oyDbxvQMlQD5BWunlBVgFjwVr/hgtnnt0ydKNFvcDk5Wan7IZQ1yDmCYwGp1NPI7YLfSIZZmfbbBrviRkQ5RdrDuOrAnXFSEAe0LDqTGRX489GNAIE+ZemBcJ0HmWuIAGpxEtpQGoB2NgnlpncJ0=
+  app: ratebirra
+  on:
+    repo: vastus/ratebeer
