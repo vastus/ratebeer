@@ -37,9 +37,10 @@ class User < ActiveRecord::Base
 
   def favorite_brewery
     if ratings.any?
-      points_for_breweries.sort_by do |s, p|
-        p
-      end.last[0]
+      brewery_id = ratings.joins(:beer).group(:brewery_id).average(:score).max_by do |style, score|
+        score
+      end.first
+      return Brewery.find(brewery_id).name
     end
   end
 
