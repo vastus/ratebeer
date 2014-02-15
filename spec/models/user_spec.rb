@@ -9,7 +9,7 @@ describe User do
   end
 
   it "is not saved without a password" do
-    user = User.create username:"Pekka"
+    user = User.create username: "Pekka"
 
     expect(user).not_to be_valid
     expect(User.count).to eq(0)
